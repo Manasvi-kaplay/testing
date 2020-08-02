@@ -1,0 +1,124 @@
+<head>
+    <style>
+        #districtdiv,#blockdiv,#panchayatdiv,#buttondiv{
+            display: none;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <script type="text/javascript">
+        function districtCall(){
+            const year_s = document.getElementById('selectYears').value
+            console.log(year_s)
+            //document.getElementById('selectYears').disabled=true;
+            document.getElementById('districtdiv').style.display="block";
+        }
+        function blockCall(){
+            document.getElementById('blockdiv').style.display="block";
+            $(document).ready(function(){
+                $.get("/login_data_entry/getBlocks",function(data){
+                    for (var i = 0; i < data.length; i+=1) {
+                        var option = document.createElement("OPTION");
+                        option.innerHTML = data[i];
+                        option.value = data[i];
+                        document.getElementById("selectblock").appendChild(option);
+                    }
+                })
+            })  
+        }
+        function panchayatCall(){
+            document.getElementById('panchayatdiv').style.display="block";
+            document.getElementById('buttondiv').style.display="block";
+            $(document).ready(function(){
+                $.get("/login_data_entry/getPanchayats",function(data){
+                    for (var i = 0; i < data.length; i+=1) {
+                        var option = document.createElement("OPTION");
+                        option.innerHTML = data[i];
+                        option.value = data[i];
+                        document.getElementById("selectpanchayat").appendChild(option);
+                    }
+                })
+            }) 
+        }
+    </script>
+<center>
+    <h2><i>Select year and area</i></h2>
+    <h3>State: <%=state;%></h3>
+        <form action="/applicants/form" method="post">
+            <div class="form-group">
+                <input type="hidden" class="form-control" name="state" value="<%=state%>" />
+            </div>
+            <div class="form-group" id="yeardiv" onchange="districtCall()">
+                <label for="selectYears">Financial year:</label>
+                <select id="selectYears" name="year">
+                    <script>
+                        window.onload = function () {
+                        var years = document.getElementById("selectYears");
+                        var currentYear = (new Date()).getFullYear();
+                        for (var i = 2009; i < currentYear; i++) {
+                            var option = document.createElement("OPTION");
+                            option.innerHTML = i+" - "+ (i+1);
+                            option.value = i;
+                            years.appendChild(option);
+                        }
+                    };
+                    </script>
+                  </select>
+            </div>
+            <div class="form-group" id="districtdiv" onchange="blockCall()">
+                <label for="selectDistrict">District:</label>
+                <select class="dis" id="selectDistrict" size="1" name="district" onchange="blockCall()">
+                    <option>Select district</option>
+                    <% result2.forEach(function(x){ %>
+                        <option value="<%= x %>"><%=x  %></option>
+                   <% }) %>
+                  </select>
+                  <script>
+                    $(document).ready(function(){    
+                        $("select.dis").change(function(){
+                            var selecteddistrict = $(this).children("option:selected").val();
+                            //alert("You have selected the district - " + selecteddistrict);
+                            $.get("/login_data_entry/block",{district:selecteddistrict}, function(result){
+                                $("span").text(result);
+                                console.log("HIIIIIII",result)
+                            }
+                        );
+                        });  
+                    });
+                </script>
+            </div>
+            <div class="form-group" id="blockdiv" onchange="panchayatCall()">
+                <label>Block:</label>
+                <select class="blk" id="selectblock" name="block">
+                    <option>Select block</option>
+                  </select>
+                  <script>
+                    $(document).ready(function(){    
+                        $("select.blk").change(function(){
+                            var selectedblock = $(this).children("option:selected").val();
+                            //alert("You have selected the block - " + selectedblock);
+                            $.get("/login_data_entry/panchayat",{block:selectedblock}, function(result){
+                                $("span").text(result);
+                                console.log("HIIIIIII",result)
+                            }
+                        );
+                        });  
+                    });
+                </script>
+            </div>
+            <div class="form-group" id="panchayatdiv">
+                <label>Panchayat:</label>
+                <select id="selectpanchayat" name="panchayat">
+                    <option value="select panchayat">Select panchayat</option>
+                  </select>
+            </div>
+            <div id="buttondiv">
+            <button type="submit">Submit</button> 
+            </div>  
+        </form>
+        <div class="error">
+            <h3><i><%=messages.error%></i></h3>
+        </div>
+    </center>
+</body>

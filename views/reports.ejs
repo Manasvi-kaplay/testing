@@ -1,0 +1,318 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta charset="utf-8" /><meta http-equiv="X-UA-Compatible" content="IE=edge" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="description" /><meta name="author" /><link rel="icon" href="../../favicon.ico" /><link href="css/bootstrap.css" rel="stylesheet" /> 
+<style>
+     html {
+  height: 100%;
+  box-sizing: border-box;
+}
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+body {
+  position: relative;
+  margin: 0;
+  padding-bottom: 6rem;
+  min-height: 100%;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+.demo {
+  margin: 0 auto;
+  padding-top: 64px;
+  max-width: 640px;
+  width: 94%;
+}
+.demo h1 {
+  margin-top: 0;
+}
+
+/**
+ * Footer Styles
+ */
+
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: white;
+  text-align: center;
+  text-decoration: none;
+}
+</style>
+ <meta charset="UTF-8">
+    <title>GP Report</title>
+    <!-- Latest compiled and minified CSS -->
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/misstyle.css">
+    <link rel="shortcut icon" href="images/title_logo.jpg" />
+    
+    
+    <style type="text/css">
+    
+        /* Create three equal columns that floats next to each other */
+        .column
+        {
+            float: left;
+            width: 33.33%;
+            padding: 10px;
+        }
+        
+        /* Clear floats after the columns */
+        .row:after
+        {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        
+        /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+        @media screen and (max-width: 550px)
+        {
+            .column
+            {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <form name="aspnetForm" method="post" action="IndexFrame.aspx" id="aspnetForm">
+<div>
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKLTU2NDIyODcwMg9kFgJmD2QWAgIDD2QWAgIBD2QWAgICDw8WAh4LTmF2aWdhdGVVcmwFUWh0dHA6Ly9ucmVnYS5uaWMuaW4vbmV0bnJlZ2Evc3RhdGVwYWdlLmFzcHg/Y2hlY2s9UiZEaWdlc3Q9K3FYSVJ5bWd3d1VCaWVoNk1mM0VVZ2RkZIdj/GThyKUVeEyblLZhzaG7MXUL" />
+</div>
+    <div style="margin-bottom: 75px;">
+<div class="container">
+<span class="pull-right"><h3 class="text-center" style="margin:0; padding:0;">Gram Panchayat Reports </h3>
+        <div id="ctl00_ContentPlaceHolder1_viewreport">
+        <div class="row">
+            <center>
+                <h4>Financial Year: <%=year%>&nbsp;&nbsp;&nbsp;</h4>
+            </center>
+                <h4>State: <%=state;%>&nbsp;&nbsp;&nbsp;District: <%=district%>&nbsp;&nbsp;&nbsp;Block: <%=block%>&nbsp;&nbsp;&nbsp;</h4> 
+                <h4>Panchayat:<%=panchayat%></h4>
+            
+            <div class="accordion-option" style="margin:0;">
+                <a href="javascript:void(0)" class="toggle-accordion active" accordion-id="#accordion">
+                </a>
+            </div>
+            <div class="clearfix"></div>
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingOne">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                                        href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">R1.Job Card/Registration
+                                       </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="panel-body">
+                                    <ol type="1">
+                                        <li><b><u>Job Card Related Reports</u></b></li>
+                                        <ol type="1">
+                                           
+                                            <li><a href="#" target='_parent' style="text-decoration: none"
+                                                onmouseup='setCounter(this);'><u>Registration Caste Wise</u></a></li>
+                                           
+                        
+                                           
+                                            <li><a href="#" target='_parent' style="text-decoration: none"
+                                                onmouseup='setCounter(this);'><u>List of Worker with Aadhar No.(UID No.) </u>
+                                            </a></li>
+                                            <li><a href="/reg_application/reports" target='_parent' style="text-decoration: none"
+                                                onmouseup='setCounter(this);'><u>Registration Application and Employment Register</u></a></li>
+                                             
+                                            <li><a href="/pending_reports/reports" target='_parent' style="text-decoration: none"
+                                                onmouseup='setCounter(this);'><u>Pending JobCards to be Verified</u></a></li>
+                                           <li><a href="/duplicate/get" target='_parent' style="text-decoration: none"
+                                            onmouseup='setCounter(this);'><u>Show duplicate entries(if any)</u></a></li>
+                                          
+                                            
+                                        </ol>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingTwo">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                                        href="#collapseTwo" aria-expanded="true" aria-controls="collapseFour">R2.Demand, Allocation & Musteroll
+                                         </a>
+                                </h4>
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
+                                <div class="panel-body">
+                                    <ol type="1">
+                                    
+                                       
+                                        <ol type="1">
+                                           
+                                            <li><a href="#" target='_parent' style="text-decoration: none"
+                                                onmouseup='setCounter(this);'><u>Demand for Work</u></a></li>                                            
+                                           
+                                            <li><a href="#" target='_parent' style="text-decoration: none"
+                                                onmouseup='setCounter(this);'><u>Employment Offered</u></a></li>                                                  
+                                           
+                                            <li><a href="#" target='_parent' style="text-decoration: none"
+                                                onmouseup='setCounter(this);'><u>100 Days Employment Exhausted </u></a></li>                                                   
+                                            
+                                            <li><a href="#" target='_parent' style="text-decoration: none"
+                                                onmouseup='setCounter(this);'><u>Unemployment Allownces</u></a></li>
+                                                 <li><a href="#" target='_parent' style="text-decoration: none"
+                                                onmouseup='setCounter(this);'><u>Work Status</u></a></li>
+                                
+                                           
+                                        </ol>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingThree">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                                        href="#collapseThree" aria-expanded="true" aria-controls="collapseTwo">R3.Work
+                                       </a>
+                                </h4>
+                            </div>
+                            <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
+                                <div class="panel-body">
+                                    <ol type="1">
+                                      
+                                        <li><a href="citizen_html/Est_Expwork.aspx?lflag=local&fin_year=2015-2016&Panchayat_Code=1809011132&type=a&Digest=IUxMSVTpDq7jzkKpIHqfiQ" target='_parent' style="text-decoration: none"
+                                            onmouseup='setCounter(this);'><u>Work Expenditure</u></a></li>
+                                      
+                                        <li><a href="allotted_work.aspx?lflag=local&Digest=pzBaNVWBLOYBZ3oFkWo19w" target='_parent' style="text-decoration: none"
+                                            onmouseup='setCounter(this);'><u>Employment Exhausted For Work</u></a></li>                                     
+                                       
+                                        <li><a href="state_html/empprov.aspx?lflag=local&Digest=pzBaNVWBLOYBZ3oFkWo19w" target='_parent' style="text-decoration: none"
+                                            onmouseup='setCounter(this);'><u>Consoliodate Report of Payment to Worker</u></a></li>
+                                      
+                                        <li><a href="state_html/pay.aspx?lflag=local&Digest=pzBaNVWBLOYBZ3oFkWo19w" target='_parent' style="text-decoration: none"
+                                            onmouseup='setCounter(this);'><u>Work Wise Consoliodate Report of Payment to Worker</u></a></li>
+
+                                             <li><a href="photo_detail.aspx?lflag=local&ExeL=GP&fin_year=2015-2016&state_code=18&district_code=1809&block_code=1809011&panchayat_code=1809011132&State_name=MAHARASHTRA&District_name=AHMEDNAGAR&Block_name=AKOLA&panchayat_name=ABIT+KHIND&page=B&Digest=GZtGonn3edXx/gH0Tns3QQ" target='_parent' style="text-decoration: none"
+                                            onmouseup='setCounter(this);'><u>Photo Detail of Works</u></a></li>
+
+                                              <li><a href="road_plant_maintenance.aspx?fin_year=2015-2016&state_code=18&district_code=1809&block_code=1809011&panchayat_code=1809011132&State_name=&District_name=AHMEDNAGAR&Block_name=AKOLA&panchayat_name=ABIT+KHIND&Digest=hsaS1QEqHx7Ce2ldZYOtBg" target='_parent' style="text-decoration: none"
+                                            onmouseup='setCounter(this);'><u> Maintenance of Roadside Tree Plantation</u></a></li>
+
+                                             <li><a href="state_html/GPlvl_road_tree_plantation.aspx?page=p&file=wrk&lflag=local&fin_year=2015-2016&state_code=18&district_code=1809&block_code=1809011&panchayat_code=1809011132&State_name=MAHARASHTRA&District_name=AHMEDNAGAR&Block_name=AKOLA&panchayat_name=ABIT+KHIND&Digest=H5cq/Xk0uHrhFQFnnnF4tg" target='_parent' style="text-decoration: none"
+                                            onmouseup='setCounter(this);'><u> Maintenance Of Block/Bund Plantation</u></a></li>
+                                       
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                         </div>
+                        <div class="col-sm-6">
+                         <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingFour">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                                        href="#collapseFour" aria-expanded="true" aria-controls="collapseFive">R4.Irregularties/ Analysis
+                                         </a>
+                                </h4>
+                            </div>
+                            <div id="collapseFour" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
+                                <div class="panel-body">
+                                    <ol type="1">
+                                       
+                                        <li><a href="state_html/gp_cummulative_report1.aspx?lflag=local&Digest=pzBaNVWBLOYBZ3oFkWo19w" target='_parent' style="text-decoration: none"
+                                            onmouseup='setCounter(this);'><u>Wage Material Ratio Analysis</u></a></li>
+                                       
+                                        <li><a href="departwiselab.aspx" target='_parent' style="text-decoration: none"
+                                            onmouseup='setCounter(this);'><u>Fortnight Muster  Wise Labour Enganged</u></a></li>
+                                      
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingFive">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                                        href="#collapseFive" aria-expanded="true" aria-controls="collapseThree">R5.IPPE
+                                         </a>
+                                </h4>
+                            </div>
+                            <div id="collapseFive" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
+                                <div class="panel-body">
+                                   <ol type="1">
+                                     
+                                        <li><a href="Citizen_html/Panchregpeople.aspx?lflag=local&fin_year=2015-2016&Panchayat_Code=1809011132&type=a&Digest=IUxMSVTpDq7jzkKpIHqfiQ" target='_parent' style="text-decoration: none"
+                                            onmouseup='setCounter(this);'><u>Application Register </u></a></li>
+                                             
+                                        <li><a href="citizen_html/list_of_work.aspx?lflag=local&fin_year=2015-2016&Panchayat_Code=1809011132&type=a&Digest=IUxMSVTpDq7jzkKpIHqfiQ" target='_parent' style="text-decoration: none"
+                                            onmouseup='setCounter(this);'><u>List of work </u></a></li>
+                                        
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingsix">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                                        href="#collapseSix" aria-expanded="true" aria-controls="collapseSix">R6.Registers
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseSix" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
+                                <div class="panel-body">
+                                    
+                                        <ol type="1">
+                                           
+                                            <li><a href="employment_register_report.aspx?fin_year=2015-2016&state_code=18&district_code=1809&block_code=1809011&panchayat_code=1809011132&State_name=&District_name=AHMEDNAGAR&Block_name=AKOLA&panchayat_name=ABIT+KHIND&Digest=hsaS1QEqHx7Ce2ldZYOtBg" target='_parent'
+                                                style="text-decoration: none" onmouseup='setCounter(this);'><u>Register No. 1 Part-A
+                                                </u></a></li>                                          
+                                            <li><a href="Register_1B.pdf?fin_year=2015-2016&state_code=18&district_code=1809&block_code=1809011&panchayat_code=1809011132&State_name=&District_name=AHMEDNAGAR&Block_name=AKOLA&panchayat_name=ABIT+KHIND&Digest=hsaS1QEqHx7Ce2ldZYOtBg" target='_parent'
+                                                style="text-decoration: none" onmouseup='setCounter(this);'><u>Register No. 1 Part-B
+                                                </u></a></li>                                            
+                                          
+                                            <li><a href="employment_register_report_a.aspx?fin_year=2015-2016&state_code=18&district_code=1809&block_code=1809011&panchayat_code=1809011132&State_name=&District_name=AHMEDNAGAR&Block_name=AKOLA&panchayat_name=ABIT+KHIND&Digest=hsaS1QEqHx7Ce2ldZYOtBg" target='_parent' style="text-decoration: none"
+                                                onmouseup='setCounter(this);'><u>Register No. 1 Part-C</u></a></li>
+                                           
+                                            <li><a href="employment_register_report_b.aspx?fin_year=2015-2016&state_code=18&district_code=1809&block_code=1809011&panchayat_code=1809011132&State_name=&District_name=AHMEDNAGAR&Block_name=AKOLA&panchayat_name=ABIT+KHIND&Digest=hsaS1QEqHx7Ce2ldZYOtBg" target='_parent' style="text-decoration: none"
+                                                onmouseup='setCounter(this);'><u>Register No. 1 Part-D</u></a></li>
+                                                                                           
+                                            
+                                            <li><a href="work_register.aspx?fin_year=2015-2016&state_code=18&district_code=1809&block_code=1809011&panchayat_code=1809011132&State_name=&District_name=AHMEDNAGAR&Block_name=AKOLA&panchayat_name=ABIT+KHIND&Digest=hsaS1QEqHx7Ce2ldZYOtBg" target='_parent'
+                                                style="text-decoration: none" onmouseup='setCounter(this);'><u>Work Register </u></a></li>
+                                           
+                                        
+                                        <li><a href="material_register.aspx?fin_year=2015-2016&state_code=18&district_code=1809&block_code=1809011&panchayat_code=1809011132&State_name=&District_name=AHMEDNAGAR&Block_name=AKOLA&panchayat_name=ABIT+KHIND&Digest=hsaS1QEqHx7Ce2ldZYOtBg" target='_parent' style="text-decoration: none"
+                                            onmouseup='setCounter(this);'><u>Material Register </u></a></li>
+                                      
+                                        <li><a href="citizen_html/citipoattend_repdist.aspx?level=DPC&sec=an&dc=1809&fin_year=2015-2016&type=1&panchayat_code=1809011132&Digest=IIPIXVrsxkMbueBpwyiUOA" target='_parent' style="text-decoration: none"
+                                            onmouseup='setCounter(this);'><u>Complaint Register </u></a></li>                                       
+                                   
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
+    <script src="js/misindex.js"></script>
+    </div>
+    </form>
+    <center>
+<a href="/village_wise_imp/get">Highlight high,medium and low important reports(village wise)</a><br>
+<a href="/panchayat_wise_imp/get">Highlight high,medium and low important reports(panchayat wise)</a><br>
+<a href="/state_wise_comp/get">State wise comparison</a>
+</center>
+</body>
+</html>

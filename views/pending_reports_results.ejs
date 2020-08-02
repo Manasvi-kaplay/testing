@@ -1,0 +1,66 @@
+<center>
+    <h2>Pending job cards to be verified</h2>
+    <table border="1px">
+        <tr>
+            <th class="t1">S.No</th>
+            <th class="t1">Village</th>
+            <th class="t1">Head of the family</th>
+            <th class="t1">Father/Husband's name</th>
+            <th class="t1">Caste</th>
+            <th class="t1">Name of the applicant</th>
+            <th class="t1">Gender</th>
+            <th class="t1">Age</th>
+            <th class="t1">Registration request date</th>
+            <th class="t1">Job card issue date</th>
+            <th class="t1">Disability</th>
+            <th class="t1">Minority</th>
+            <th class="t1">Job card id</th>
+            <th class="t1">Status</th>
+            </tr>
+            <% var count=0 %>
+            <% result.forEach(function(x,i){ %>
+                <div>
+                <tr>
+                    <% if(x.Applicant_Detail[0].Status=='Pending'){%>
+                        <% count=count+1 %>
+                    <td><%=count%></td>
+                    <td><%=x.Villages%></td>
+                    <td><%=x.Family_Head %></td>
+                    <td><%=x.F_H_Name %></td>
+                    <td><%=x.Caste %></td>
+                    <td><%=x.Applicant_Detail[0].Name %></td>
+                    <td><%=x.Applicant_Detail[0].Gender %></td>
+                    <td><%=x.Applicant_Detail[0].Age %></td>
+                    <td><%=x.Applicant_Detail[0].Request_for_Registration %></td>
+                    <td><%=x.Applicant_Detail[0].Date_of_Job_card_Issue %></td>
+                    <td><%=x.Applicant_Detail[0].Disabled %></td>
+                    <td><%=x.Applicant_Detail[0].Minority %></td>
+                    <td><%=x.Applicant_Detail[0].Job_Card_ID %></td>
+                    <td><%=x.Applicant_Detail[0].Status %></td>
+                    <% }%>
+                </tr>
+                <% for(var j=1;j < x.Applicant_Detail.length; j+=1) { %>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                        <% if(x.Applicant_Detail[j].Status=='Pending'){%>
+                        <td><%=x.Applicant_Detail[j].Name %></td>
+                        <td><%=x.Applicant_Detail[j].Gender %></td>
+                    <td><%=x.Applicant_Detail[j].Age %></td>
+                    <td><%=x.Applicant_Detail[j].Request_for_Registration %></td>
+                    <td><%=x.Applicant_Detail[j].Date_of_Job_card_Issue %></td>
+                    <td><%=x.Applicant_Detail[j].Disabled %></td>
+                    <td><%=x.Applicant_Detail[j].Minority %></td>
+                    <td><%=x.Applicant_Detail[j].Job_Card_ID %></td>
+                    <td><%=x.Applicant_Detail[j].Status %></td>
+                    <%}%>
+                </tr>
+                <%}%>
+                </div>
+                <% }) %>
+    </table>
+    <h4><%=count%> results found</h4>
+</center>

@@ -1,0 +1,33 @@
+<html>
+<head>
+</head>
+<body>
+<center>
+    <h2>Highlighting importance of panchayat reports on the basis of no. of registrations/population</h2>
+    <table border="1px">
+        <tr>
+            <th class="t1">S.No</th>
+            <th class="t1">Panchayat</th>
+            <th class="t1">Total registered</th>
+            <th class="t1">Total households</th>
+            <th class="t1">Percentage registered</th>
+            </tr>
+            <%result.sort(function(a, b) {
+                return parseFloat(a.total2/a.total1) - parseFloat(b.total2/b.total1);
+                });%>
+            <% result.forEach(function(x,i){ %>
+                <div>
+                <tr>
+                    <td><%=i+1%></td>
+                    <td><%=x._id%></td>
+                    <td><%=x.total2 %></td>
+                    <td><%=x.total1 %></td>
+                    <td><%=(x.total2*100)/x.total1 %></td>
+                </tr>
+                <% }) %>
+    </table>
+    <h4>Note: As percentage registered decreases,importance of reports increases</h4>
+    <a href="/panchayat_wise_imp/graph">View graph</a>
+    </center>
+    </body>
+</html>

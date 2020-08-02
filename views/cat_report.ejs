@@ -1,0 +1,67 @@
+<body>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+        google.charts.setOnLoadCallback(drawChart2);
+        function drawChart() {
+            var sc_fam = JSON.parse('<%- JSON.stringify(sc_fam) %>');
+            var st_fam = JSON.parse('<%- JSON.stringify(st_fam) %>');
+            var other_fam = JSON.parse('<%- JSON.stringify(other_fam) %>');
+          var data = google.visualization.arrayToDataTable([
+            ['Category', 'Registered'],
+            ['SC',  sc_fam ],
+            ['ST',  st_fam],
+            ['Other',  other_fam],
+          ]);
+          var options = {
+            title: 'Category wise registration',
+          };
+          var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+          chart.draw(data, options);
+        }
+        function drawChart2() {
+          var male = JSON.parse('<%- JSON.stringify(male) %>');
+          var female = JSON.parse('<%- JSON.stringify(female) %>');
+        var data = google.visualization.arrayToDataTable([
+          ['Gender', 'Registered'],
+          ['Male',  male ],
+          ['Female',  female],
+        ]);
+        var options = {
+          title: 'Gender wise registration',
+          
+        };
+        var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
+        chart.draw(data, options);
+      }
+    </script>
+<center>
+    <table class="t">
+        <tr>
+            <th class="t1">SC families</th>
+            <th class="t1">SC person</th>
+            <th class="t1">ST families</th>
+            <th class="t1">ST person</th>
+            <th class="t1">Other families</th>
+            <th class="t1">Other people</th>
+            <th class="t1">Male</th>
+            <th class="t1">Female</th>
+            </tr>
+                <div>
+                <tr>
+                    <td><%=data2.sc_fam %></td>
+                    <td><%=data2.sc_per %></td>
+                    <td><%=data2.st_fam %></td>
+                    <td><%=data2.st_per %></td>
+                    <td><%=data2.other_fam %></td>
+                    <td><%=data2.other_per %></td>
+                    <td><%=data2.male %></td>
+                    <td><%=data2.female %></td>
+                </tr>
+                </div>
+    </table>
+    </center>
+    <div id="piechart" style="width: 900px; height: 500px "></div>
+    <div id="piechart2" style="width: 900px; height: 500px "></div>
+    </body>

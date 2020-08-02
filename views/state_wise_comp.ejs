@@ -1,0 +1,33 @@
+<html>
+<head>
+</head>
+<body>
+<center>
+    <h2>State wise no. of registrations/population</h2>
+    <table border="1px">
+        <tr>
+            <th class="t1">S.No</th>
+            <th class="t1">State</th>
+            <th class="t1">Total registered</th>
+            <th class="t1">Total households</th>
+            <th class="t1">Percentage registered</th>
+            </tr>
+            <%result.sort(function(a, b) {
+                return parseFloat(a.Total_Registered/a.Total_Households) - parseFloat(b.Total_Registered/b.Total_Households);
+                });%>
+            <% result.forEach(function(x,i){ %>
+                <div>
+                <tr>
+                    <td><%=i+1%></td>
+                    <td><%=x._id%></td>
+                    <td><%=x.Total_Registered %></td>
+                    <td><%=x.Total_Households %></td>
+                    <td><%=(x.Total_Registered*100)/x.Total_Households %></td>
+                </tr>
+                <% }) %>
+    </table>
+    <h4>Note: As percentage registered decreases,importance of reports increases</h4>
+    <a href="/state_wise_comp/graph">View graph</a>
+    </center>
+    </body>
+</html>

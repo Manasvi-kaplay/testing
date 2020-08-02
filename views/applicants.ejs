@@ -1,0 +1,56 @@
+<center>
+    <h2><i>Registration and Job card</i></h2>
+    <h4>Financial Year: <%=year%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;State: <%=state%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;District: <%=district%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Block: <%=block%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Panchayat: <%=panchayat%></h4>
+<form action="/applicants/add" method="post">
+<div class="form-group">
+    <label>Village</label>
+    <select id="village" name="Villages">
+        <option>Select village</option>
+        <% result.forEach(function(y){ %>
+            <option value="<%= y %>"><%=y  %></option>
+       <% }) %>
+      </select>
+</div>
+<div class="form-group">
+    <label>Head of the family</label>
+    <input type="text" class="form-control" name="Family_Head">
+</div>
+<div class="form-group">
+    <label>Caste</label>
+    <select id="category" name="Caste">
+        <option>Select category</option>
+        <option>SC</option>
+        <option>ST</option>
+        <option>OTH</option>
+      </select>
+</div>
+<div class="form-group">
+    <label>Father/Husband's name:</label>
+    <input type="text" class="form-control" name="F_H_Name">
+</div>
+<div class="field_wrapper">
+    <label>Enter family members details:</label>
+    <div>
+        <input type="text" name="Name" placeholder="Name">
+        <input type="text" name="Gender" placeholder="Gender">
+        <input type="number" name="Age" placeholder="Age">
+        <input type="date" name="Request_for_Registration" placeholder="Registration request date ">
+        <input type="date" name="Date_of_Job_card_Issue" placeholder="Job card issue date:">
+        <input type="text" name="Disabled" placeholder="Disabled">
+        <input type="text" name="Minority" placeholder="Minority">
+        <input type="text" name="Job_Card_Id" placeholder="Job card id">
+        <input type="text" name="Reason" placeholder="Reason(if not to approve)">
+        <input type="text" name="Status" placeholder="Status">
+        <input type="text" name="Aadhaar" placeholder="Aadhar No.">
+        <a href="javascript:void(0);" class="add_button" title="Add field">Add applicant</a>
+    </div>
+</div>
+<button type="submit" class="btn btn-warning btn-lg">Submit</button>
+</form>
+<div class="error">
+    <h3><i><%=messages.info%></i></h3>
+</div>
+</center>
+    
+
+    

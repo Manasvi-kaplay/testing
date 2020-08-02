@@ -1,0 +1,77 @@
+<center>
+    <h4>State: <%=state%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;District: <%=district%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Block: <%=block%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Panchayat: <%=panchayat%></h4><br>
+    <h5>Job card id: <%=data.Job_Card_ID%></h5>
+    <h5>Name: <%=data.Name%></h5>
+    <h5>Gender: <%=data.Gender%></h5>
+    <h5>Age: <%=data.Age%></h5>
+    <h5>Registration date: <%=data.Date%></h5>
+    <h5>Disabled: <%=data.Disabled%></h5>
+    <h5>Minority: <%=data.Minority%></h5>
+    <h5>Account: <%=data.Account%></h5><br>
+    <h4>Employment requested:</h4>
+    <table border="1px">
+        <tr>
+            <th class="t1">S.No</th>
+            <th class="t1">Demand Id</th>
+            <th class="t1">Month and date requested</th>
+            <th class="t1">No. of days</th>
+        </tr>
+        <% data.Requested.forEach(function(x,i){ %>
+            <div>
+            <tr>
+                <td><%=i+1%></td>
+                <td><%=x.Demand_Id %></td>
+                <td><%=x.Month_Date %></td>
+                <td><%=x.No %></td>
+            </tr>
+            </div>
+            <%})%>
+    </table>
+    <h4>Employment offered:</h4>
+    <table border="1px">
+        <tr>
+            <th class="t1">S.No</th>
+            <th class="t1">Demand Id</th>
+            <th class="t1">Month and date requested</th>
+            <th class="t1">No. of days</th>
+            <th class="t1">Work</th>
+        </tr>
+        <% data.Offered.forEach(function(x,i){ %>
+            <div>
+            <tr>
+                <td><%=i+1%></td>
+                <td><%=x.Demand_Id %></td>
+                <td><%=x.Month_Date %></td>
+                <td><%=x.No %></td>
+                <td><%=x.Work%></td>
+            </tr>
+            </div>
+            <%})%>
+    </table>
+    <h4>Employment given:</h4>
+    <table border="1px">
+        <tr>
+            <th class="t1">S.No</th>
+            <th class="t1">Month_Date</th>
+            <th class="t1">No. of days</th>
+            <th class="t1">Work</th>
+            <th class="t1">MSR</th>
+            <th class="t1">Amount of work done</th>
+            <th class="t1">Payment due</th>
+        </tr>
+        <% data.Given.forEach(function(x,i){ %>
+            <div>
+            <tr>
+                <td><%=i+1%></td>
+                <td><%=x.Month_Date %></td>
+                <td><%=x.No %></td>
+                <td><%=x.Work %></td>
+                <td><%=x.MSR %></td>
+                <td><%=x.Amount%></td>
+                <td><%=x.Payment%></td>
+            </tr>
+            </div>
+            <%})%>
+    </table>
+</center>
+

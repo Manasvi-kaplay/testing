@@ -1,0 +1,20 @@
+<center>
+    <h2><i>Choose panchayat</i></h2>
+    <h3>Financial Year: <%=year%>&nbsp;&nbsp;&nbsp;State: <%=state;%>&nbsp;&nbsp;&nbsp;District: <%=district%>&nbsp;&nbsp;&nbsp;Block: <%=block%></h3>
+    <form action="/reports/list" method="post" >
+        <input type="hidden" name="year" value="<%=year%>" >
+        <input type="hidden" name="state" value="<%=state%>" >
+        <input type="hidden" name="district" value="<%=district%>" >
+        <input type="hidden" name="block" value="<%=block%>" >
+        <div class="form-group">
+            <label>Panchayat:</label>
+            <select id="panchayat" name="panchayat">
+                <option value="select panchayat">Select panchayat</option>
+                <% panchayat.forEach(function(x){ %>
+                    <option value="<%= x %>"><%=x  %></option>
+               <% }) %>
+              </select>
+        </div>
+        <button type="submit">Proceed</button>
+    </form>
+</center>

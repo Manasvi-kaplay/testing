@@ -1,0 +1,28 @@
+<center>
+    <h2>Highlighting importance of village reports on the basis of no. of registrations/population</h2>
+    <table border="1px">
+        <tr>
+            <th class="t1">S.No</th>
+            <th class="t1">Village</th>
+            <th class="t1">Total registered</th>
+            <th class="t1">Total households</th>
+            <th class="t1">Percentage registered</th>
+            </tr>
+            <%specific.sort(function(a, b) {
+                return parseFloat(a.Total_Registered/a.Total_Households) - parseFloat(b.Total_Registered/b.Total_Households);
+                });%>
+            <% specific.forEach(function(x,i){ %>
+                <div>
+                <tr>
+                    <td><%=i+1%></td>
+                    <td><%=x.Villages%></td>
+                    <td><%=x.Total_Registered %></td>
+                    <td><%=x.Total_Households %></td>
+                    <td><%=(x.Total_Registered*100)/x.Total_Households %></td>
+                    <td><input name="percent" type="hidden" value="<%=(x.Total_Registered*100)/x.Total_Households %>"></td>
+                </tr>
+                <% }) %>
+    </table>
+    <h4>Note: As percentage registered decreases,importance of reports increases</h4>
+        <a href="/village_wise_imp/graph">View graph</a>
+    </center>

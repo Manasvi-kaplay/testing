@@ -1,0 +1,217 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.5/css/responsive.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.5/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.colVis.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#exportTable').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'colvis'
+                ]
+            });
+        });
+    </script>
+    <style>
+        .error {
+            color: crimson;
+            margin-bottom: 1em;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <h2>Registration application reports</h2>
+        <h4>Financial Year: <%=year%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;State:
+            <%=state%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;District:
+            <%=district%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Block:
+            <%=block%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Panchayat: <%=panchayat%></h4>
+    </center>
+    <form action="/reg_application/view_by_filters" method="POST">
+        <div style="float:right">
+            <input type="text" name="head" placeholder="Search by family head name..">
+        </div>
+        <div class="form-group" style="float:right">
+            <select id="category" name="category">
+                <option>Select category</option>
+                <option>SC</option>
+                <option>ST</option>
+                <option>OTH</option>
+            </select>
+        </div>
+        <div class="form-group" style="float:right">
+            <select id="village" name="village">
+                <option>Select village</option>
+                <% result2.forEach(function(y){ %>
+                <option value="<%= y %>"><%=y  %></option>
+                <% }) %>
+            </select>
+        </div>
+        <br><br>
+        <div class="form-group" style="float: right;">
+            <button type="submit">Search</button>
+        </div>
+    </form>
+    <div id="tab">
+        <table id="exportTable" class="display responsive nowrap" style="width:100%">
+            <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th>Village</th>
+                    <th>Head of the family</th>
+                    <th>Father/Husband's name</th>
+                    <th>Caste</th>
+                    <th>Name of the applicant</th>
+                    <th>Gender</th>
+                    <th>Age</th>
+                    <th>Registration request date</th>
+                    <th>Job card issue date</th>
+                    <th>Disability</th>
+                    <th>Minority</th>
+                    <th>Job card id</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% var count=0 %>
+                <% data.forEach(function(x,i){ %>
+                <% if(x.Applicant_Detail[0].Status=='Approved'){%>
+                <tr>
+                    <% count=count+1 %>
+                    <td><%=count%></td>
+                    <td><%=x.Villages%></td>
+                    <td><%=x.Family_Head %></td>
+                    <td><%=x.F_H_Name %></td>
+                    <td><%=x.Caste %></td>
+                    <td><%=x.Applicant_Detail[0].Name %></td>
+                    <td><%=x.Applicant_Detail[0].Gender %></td>
+                    <td><%=x.Applicant_Detail[0].Age %></td>
+                    <td><%=x.Applicant_Detail[0].Request_for_Registration %></td>
+                    <td><%=x.Applicant_Detail[0].Date_of_Job_card_Issue %></td>
+                    <td><%=x.Applicant_Detail[0].Disabled %></td>
+                    <td><%=x.Applicant_Detail[0].Minority %></td>
+                    <td><a href="/applicant_profile/info?id=<%=x.Applicant_Detail[0].Job_Card_ID %>"
+                        id="<%=x.Applicant_Detail[0].Job_Card_ID %>"><%=x.Applicant_Detail[0].Job_Card_ID %></a></td>
+                    <% if(x.Applicant_Detail[0].Photo){%>
+                    <td class="error"><%=x.Applicant_Detail[0].Status %></td>
+                    <%}%>
+                </tr>
+                <%}%>
+                    <% for(var j=1;j < x.Applicant_Detail.length; j+=1) { %>
+                <tr>
+                    <td> </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <% if(x.Applicant_Detail[j].Status=='Approved'){%>
+                    <td><%=x.Applicant_Detail[j].Name %></td>
+                    <td><%=x.Applicant_Detail[j].Gender %></td>
+                    <td><%=x.Applicant_Detail[j].Age %></td>
+                    <td><%=x.Applicant_Detail[j].Request_for_Registration %></td>
+                    <td><%=x.Applicant_Detail[j].Date_of_Job_card_Issue %></td>
+                    <td><%=x.Applicant_Detail[j].Disabled %></td>
+                    <td><%=x.Applicant_Detail[j].Minority %></td>
+                    <td><a href="/applicant_profile/info?id=<%=x.Applicant_Detail[j].Job_Card_ID %>"
+                        id="<%=x.Applicant_Detail[j].Job_Card_ID %>"><%=x.Applicant_Detail[j].Job_Card_ID %></a></td>
+                    <% if(x.Applicant_Detail[j].Photo){%>
+                    <td class="error"><%=x.Applicant_Detail[j].Status %></td>
+                    <%}%>
+                    <%}%>
+                </tr>
+                <%}%>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+    <h4>Total no. of approved applicants: <%=count%></h4>
+
+    <link rel="stylesheet" type="text/css"
+        href="http://www.shieldui.com/shared/components/latest/css/light/all.min.css" />
+    <script type="text/javascript"
+        src="http://www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
+    <script type="text/javascript" src="http://www.shieldui.com/shared/components/latest/js/jszip.min.js"></script>
+
+    <script type="text/javascript">
+        function exportToPDF() {
+            var sTable = document.getElementById('tab').innerHTML;
+
+            var style = "<style>";
+            style = style + "table {width: 100%;font: 17px Calibri;}";
+            style = style + "table, th, td {border: solid 1px #DDD; border-collapse: collapse;";
+            style = style + "padding: 2px 3px;text-align: center;}";
+            style = style + "</style>";
+
+            // CREATE A WINDOW OBJECT.
+            var win = window.open('', '', 'height=700,width=700');
+
+            win.document.write('<html><head>');
+            win.document.write('<title>Profile</title>');   // <title> FOR PDF HEADER.
+            win.document.write(style);          // ADD STYLE INSIDE THE HEAD TAG.
+            win.document.write('</head>');
+            win.document.write('<body>');
+            win.document.write(sTable);         // THE TABLE CONTENTS INSIDE THE BODY TAG.
+            win.document.write('</body></html>');
+
+            win.document.close(); 	// CLOSE THE CURRENT WINDOW.
+
+            win.print();    // PRINT THE CONTENTS.
+        }
+
+        function exportToExcel(tableID) {
+            //taking file name
+            var outputFile = window.prompt("What do you want to name your output file?") || 'export';
+            var downloadurl;
+            var dataFileType = 'application/vnd.ms-excel';
+            var tableSelect = document.getElementById(tableID);
+            var tableHTMLData = tableSelect.outerHTML.replace(/ /g, '%20');
+
+
+            // Create download link element
+            downloadurl = document.createElement("a");
+
+            document.body.appendChild(downloadurl);
+
+            if (navigator.msSaveOrOpenBlob) {
+                var blob = new Blob(['\ufeff', tableHTMLData], {
+                    type: dataFileType
+                });
+                navigator.msSaveOrOpenBlob(blob, filename);
+            } else {
+                // Create a link to the file
+                downloadurl.href = 'data:' + dataFileType + ', ' + tableHTMLData;
+
+                // Setting the file name
+                downloadurl.download = outputFile;
+
+                //triggering the function
+                downloadurl.click();
+            }
+        }
+
+    </script>
+
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-expanded="false">
+            Export As
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <li><a class="dropdown-item text-lg-left" onclick="exportToExcel('exportTable')">Excel (xls)</a></li>
+
+            <li><a class="dropdown-item" onclick="exportToPDF()">Pdf</a></li>
+        </ul>
+    </div>
+</body>
+
+</html>
